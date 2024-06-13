@@ -99,12 +99,12 @@ def encode(message, base, turns):
 
 def main(args):
     ## Input
-    if args.input or args.text:
+    if args.input or args.string:
         if args.input:
             with open(args.input) as input_file:
                 input = input_file.read()
         else:
-            input = args.text
+            input = args.string
     else:
         print("Error: Need an input, use -fi or -ti. Use -h for more help.")
         return(None)
@@ -129,12 +129,12 @@ def main(args):
         elif args.mode.lower() == "encoderand":
             output = encode(input.encode(), "rand", args.turns)
         else:
-            print("Error: Need an mode (-m Decode/Encode) and turns (-et) for encodes. Use -h for more help.")
+            print("Error: Need an mode (-m Decode/Encode) and turns (-t) for encodes. Use -h for more help.")
             return(None)    
         if not args.output:
             print(output)
     else:
-        print("Error: Need an mode (-m Decode/Encode) and turns (-et) for encodes. Use -h for more help.")
+        print("Error: Need an mode (-m Decode/Encode) and turns (-t) for encodes. Use -h for more help.")
         return(None)
 
 
@@ -150,10 +150,10 @@ if __name__ == "__main__":
     ## Arguments setup
     parser = argparse.ArgumentParser()
     parser.add_argument("-fi", "--file", dest = "input", help="Input File")
-    parser.add_argument("-ti", "--text", dest = "text", help="Input Text")
-    parser.add_argument("-fo", "--output", dest = "output", help="Output File")
+    parser.add_argument("-si", "--string", dest = "string", help="Input String")
+    parser.add_argument("-o", "--output", dest = "output", help="Output File")
     parser.add_argument("-m", "--mode",dest = "mode", help="Mode (Decode/Encode16/Encode32/Encode64/EncodeRAND)")
-    parser.add_argument("-et", "--turns", dest = "turns", help="Encoding Turns", type=int)
+    parser.add_argument("-t", "--turns", dest = "turns", help="Encoding Turns", type=int)
     args = parser.parse_args()
 
     ## Run main function
